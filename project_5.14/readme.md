@@ -2,7 +2,7 @@
 
 LICENSE: [MIT](./license.md)
 
-<img src="assets/logo-git.png" align="center" alt="logo" width=300>
+![git-logo](assets/logo-git.png" | width=100)
 
 ## Содержание:
 
