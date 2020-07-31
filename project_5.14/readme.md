@@ -2,13 +2,14 @@
 
 LICENSE: [MIT](./license.md)
 
-<img src="assets/logo-git.png" align="center" alt="logo" width=300>
+<img src="assets/logo-git.png" alt="logo" width=300>
 
 ## Содержание:
 
-1. Установка GIT
-2. [git add](add.md)
-3.
+1. [Установка GIT](content/init.md)
+2. [git add](content/add.md)
+3. [git commit](content/commit.md)
+4. [git romote](content/remote.md)
 
 ---
 
