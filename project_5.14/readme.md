@@ -9,7 +9,7 @@ LICENSE: [MIT](./license.md)
 1. [Установка GIT](content/init.md)
 2. [git add](content/add.md)
 3. [git commit](content/commit.md)
-4. [git romote](content/remote.md)
+4. [git remote](content/remote.md)
 
 ---
 
