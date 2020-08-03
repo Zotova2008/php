@@ -37,3 +37,5 @@ LICENSE: [MIT](license.md)
    ```
    git add -A
    ```
+
+#### [<= К содержанию](../readme.md) | [далее - git commit =>](commit.md)

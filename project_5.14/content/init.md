@@ -36,3 +36,5 @@ $ cd C:/Users/user/my_project
 ```
 $ git init
 ```
+
+#### [<= К содержанию](../readme.md) | [далее - git add =>](add.md)

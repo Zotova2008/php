@@ -22,27 +22,16 @@ LICENSE: [MIT](license.md)
 
    ![](../assets/new.png)
 
-1) **Подключаемся к своему аккаунту github.**
+2. **Заполняем и создаем.**
 
-   _Данная команда выполняется один раз, в момент установки git на свой компьютер.
-   Подробнее об установке можно узнать на сайте https://git-scm.com/_
+![](../assets/new2.png)
 
-```
-git config --global user.name "Your Name"
-git config --global user.email "your_email@mail.com"
-```
-
-2. **Создаем папку для проекта**
-3. **Открываем терминал и пишем:**
+3. **Синхронизируем свою папку на компьютере с удаленным репозиторием**
 
 ```
-$ cd C:/Users/user/my_project
+git remote add origin git@github.com:Zotova2008/php.git
 ```
 
-4. **Выполняем команду:**
+![](../assets/new3.png)
 
-   _(Данная команда создает в текущей директории новую папку `.git`)_
-
-```
-$ git init
-```
+#### [<= К содержанию](../readme.md) | [далее - git pull =>](pull.md)
