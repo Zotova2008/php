@@ -1,3 +1,7 @@
+.card-body {
+  background-color: #000000;
+}
+
 .calc-row {
   height: 100vh;
 
@@ -9,7 +13,57 @@
   text-align: end;
 }
 
-.col {
-  padding-right: 3px;
-  padding-left: 3px;
+.operation-box {
+  height: auto;
+  min-height: 38px;
+  margin-bottom: 10px;
+
+  text-align: end;
+}
+
+.no-gutters .col {
+  padding: 1px;
+}
+
+.error {
+  min-height: 48px;
+
+  font-weight: bold;
+  text-align: center;
+  color: red;
+}
+
+.last-operation {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.last-operation__btn {
+  width: 100%;
+  margin-bottom: 10px;
+
+  border-radius: 3px;
+}
+
+.last-operation__content {
+  width: 100%;
+  height: 0;
+  margin: 0;
+  padding: 0 10px;
+  overflow: auto;
+
+  list-style: none;
+
+  opacity: 0;
+
+  transition: all 0.5s ease-in;
+}
+
+.last-operation__open .last-operation__content {
+  height: 70px;
+
+  border: 1px solid grey;
+  opacity: 1;
+
+  transition: all 0.5s ease-in;
 }
