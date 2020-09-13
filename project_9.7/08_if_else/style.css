@@ -1,4 +1,39 @@
 .game-card {
-    height: 100vh;
-    font-family: 'Open Sans', monospace;
+  height: 100vh;
+
+  font-family: "Open Sans", monospace;
+}
+
+.col + .col {
+  margin-top: 20px;
+}
+
+.game-start {
+  display: none;
+  margin-bottom: 1.25rem;
+}
+
+.game-start.active {
+  display: flex;
+}
+
+.game-answer {
+  display: none;
+}
+
+.game-answer.active {
+  display: flex;
+}
+
+.input-min,
+.input-max {
+  width: 100%;
+}
+
+.error-min,
+.error-max {
+  min-height: 20px;
+
+  font-size: 12px;
+  color: red;
 }
