@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Генератор случайных пользователей</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row game-card align-items-center">
+            <div class="col col-md-6 offset-md-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <p class="m-0">Окно результатов генерации</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col card-box">
+                                <div class="card__item card__name">
+                                    <p class="card__item-title">Фамилия: </p>
+                                    <span id="surnameOutput">Петров</span>
+                                </div>
+                                <div class="card__item card__name">
+                                    <p class="card__item-title">Имя: </p>
+                                    <span id="firstNameOutput">Иван</span>
+                                </div>
+                                <div class="card__item card__name">
+                                    <p class="card__item-title">Отчество: </p>
+                                    <span id="patronymicOutput">Иванович</span>
+                                </div>
+                                <div class="card__item">
+                                    <p class="card__item-title">Пол: </p>
+                                    <span id="genderOutput">Мужской</span>
+                                </div>
+                                <div class="card__item">
+                                    <p class="card__item-title">Дата рождения: </p>
+                                    <span id="birthDateOutput">11.10.1986</span>
+                                </div>
+                                <div class="card__item">
+                                    <p class="card__item-title">Профессия: </p>
+                                    <span id="professionOutput">Слесарь</span>
+                                </div>
+
+                                <!-- <li class="card__item-title">Дата рождения: <span id="birthYearOutput">11.10.1986</span></li> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="personGenerator.js"></script>
+    <script src="init.js"></script>
+</body>
+
+</html>

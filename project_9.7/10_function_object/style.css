@@ -1,0 +1,50 @@
+.game-card {
+  height: 100vh;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons__item {
+  width: 45%;
+  min-height: 50px;
+
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: calc(0.25rem - 1px);
+
+  transition: all 0.5s ease-in;
+}
+
+.buttons__item:hover {
+  color: #ffffff;
+
+  transition: all 0.3s ease-in;
+}
+
+.buttons__generation:hover {
+  background-color: green;
+}
+
+.buttons__reset:hover {
+  background-color: brown;
+}
+
+.display {
+  display: none;
+}
+
+.display.active {
+  display: block;
+  margin: 1.25rem auto 2.5rem auto;
+}
+
+.data-box {
+  display: none;
+}
+
+.data-box.active {
+  display: flex;
+  flex-direction: column;
+}
