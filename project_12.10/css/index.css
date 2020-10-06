@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  font-size: 14px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+ul[class] {
+  list-style: none;
+}
+
+ul[class],
+li {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  display: inline-block;
+  max-width: fit-content;
+  margin-top: 10px;
+  padding: 10px 16px;
+
+  font-size: 14px;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+
+  background-color: #008cba;
+  border: none;
+  border-radius: 10px;
+}
+
+input {
+  display: inline-block;
+  max-width: 200px;
+  margin: 5px 10px 5px 0;
+  padding: 0 10px;
+
+  line-height: 36px;
+  vertical-align: middle;
+  color: white;
+  white-space: normal;
+
+  background: none;
+  background-color: #3cbc8d;
+  border: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+.wrapper__title {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Панель управления */
+.panel__wrapper {
+  display: flex;
+  flex-basis: 25%;
+  flex-direction: column;
+  align-items: center;
+  max-height: inherit;
+  overflow: hidden;
+
+  background: aliceblue;
+}
+
+.panel__devtools {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.line {
+  margin-top: 10px;
+}
+
+/* Список экзотических фруктов */
+.fruits__wrapper {
+  flex-basis: 75%;
+  max-height: inherit;
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+.fruits__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-height: inherit;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.fruit__item {
+  width: fit-content;
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+
+  border-radius: 10px;
+}
+
+.fruit_other {
+  border: 10px solid grey;
+}
+
+.fruit_violet {
+  border: 10px solid #8b00ff;
+}
+
+.fruit_green {
+  border: 10px solid #84cd1b;
+}
+
+.fruit_carmazin {
+  border: 10px solid #dc143c;
+}
+
+.fruit_red {
+  border: 10px solid red;
+}
+
+.fruit_orange {
+  border: 10px solid orange;
+}
+
+.fruit_blue {
+  border: 10px solid blue;
+}
+
+.fruit_whiteblue {
+  border: 10px solid #33c0ff;
+}
+
+.fruit_yellow {
+  border: 10px solid #ffd800;
+}
+
+.fruit_lightbrown {
+  border: 10px solid #cd853f;
+}
+
+.fruit_brown {
+  border: 10px solid #36200b;
+}
+
+.fruit_black {
+  border: 10px solid #000000;
+}
+
+.fruit__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 10px;
+
+  background: #ffffff;
+  border-radius: 5px;
+}
