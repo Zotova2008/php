@@ -406,6 +406,8 @@ a[href]:active {
   z-index: -1;
 
   width: 80%;
+  max-width: 90vh;
+  max-height: 90vh;
   margin: auto;
   padding: 10px;
   overflow: auto;
