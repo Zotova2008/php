@@ -1,3 +1,5 @@
 <footer class="footer">
-  <h2>Мы изучили основы PHP!</h2>
+  <div class="wrapper">
+    <h2>Мы изучили основы PHP!</h2>
+  </div>
 </footer>
