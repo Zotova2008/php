@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=PT+Sans:wght@400;700&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0 auto;
+
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: "Lobster", cursive;
+  color: #000000;
+}
+
+footer {
+  margin-top: auto;
+}
+
+/* .greetings,
+p,
+h1,
+h2 {
+  font-family: "Noto Serif JP", serif;
+} */
+
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* .flex-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 5px;
+
+  background-color: #e6e6e6;
+} */
+
+.header-box {
+  margin-bottom: 3em;
+  padding: 20px;
+
+  background-color: #ced8f6;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  width: 70px;
+  height: 70px;
+  margin-left: 10px;
+}
+
+.menu__list {
+  display: flex;
+
+  list-style-type: none;
+}
+
+.menu__item {
+  margin-right: 20px;
+}
+
+.menu__item a {
+  font-weight: 800;
+  font-size: 1.5rem;
+  font-family: "PT Sans", sans-serif;
+  color: #848484;
+  text-decoration: none;
+}
+
+.about_me {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+.data {
+  display: flex;
+  align-items: center;
+}
+
+.fullname {
+  flex-basis: 750px;
+  margin-right: 20px;
+}
+
+.my-img {
+  flex-basis: 450px;
+  margin-top: 150px;
+  padding-left: 20px;
+}
+
+.knowledge {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.article {
+  margin-top: 2em;
+}
+
+p {
+  padding-left: 20px;
+
+  font-size: 1.2rem;
+  color: #08298a;
+}
+
+.text {
+  font-size: 1rem;
+  color: #585858;
+}
+
+h2 {
+  text-align: center;
+  color: #424242;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: #08298a;
+}
+
+.footer {
+  flex: 0 0 auto;
+
+  background-color: #5882fa;
+}
