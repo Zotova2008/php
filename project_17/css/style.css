@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=PT+Sans:wght@400;700&display=swap");
+
+html {
+  box-sizing: border-box;
+
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0 auto;
+
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.3;
+  font-family: "PT Sans", sans-serif;
+  color: #000000;
+  text-shadow: 1px 1px 5px #ffffff;
+
+  background-image: url("../img/bg.png");
+}
+
+footer {
+  margin-top: auto;
+}
+
+.wrapper {
+  width: 95%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+main {
+  margin: auto 0;
+}
+
+.header,
+.footer {
+  background-color: darkblue;
+  border: 1px solid transparent;
+}
+
+.title {
+  font-family: "Lobster", cursive;
+  text-align: center;
+}
+
+.header .title,
+.footer .title {
+  color: #ffffff;
+  text-shadow: 1px 1px 5px #000000;
+}
+
+.statistics__list {
+  width: 250px;
+  margin: 0 auto;
+  padding: 0;
+
+  list-style: none;
+}
+
+.statistics__item {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  border-bottom: 3px solid darkblue;
+}
+
+.statistics__item:last-child {
+  border: none;
+}
+
+.statistics__title {
+  width: 200px;
+}
+
+.perfect__result {
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.perfect__number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  font-size: 20px;
+  font-family: "Lobster", cursive;
+}
+
+.perfect__number p {
+  margin: 0 10px;
+
+  font-size: 30px;
+  color: red;
+}
