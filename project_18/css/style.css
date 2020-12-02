@@ -1,0 +1,32 @@
+.comments-link {
+  display: block;
+  /* width: 200px; */
+  margin: auto;
+}
+
+.img-container {
+  position: relative;
+}
+
+.img-delete {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  z-index: 10;
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  font-size: 20px;
+}
+
+.container {
+  padding-bottom: 50px;
+}
+
+@media (min-width: 576px) {
+  .img-container.col-sm-3 {
+    max-width: 100%;
+  }
+}
