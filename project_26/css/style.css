@@ -1,0 +1,155 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  width: 100%;
+  min-width: 320px;
+  max-width: 1024px;
+  min-height: 100vh;
+  margin: 0 auto;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: "Tahoma", "Verdana", sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  gap: 30px;
+  grid-template-areas:
+    "header header header"
+    "aside main main"
+    "footer footer footer";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+
+  background-color: rgba(127, 255, 212, 0.3);
+
+  grid-area: header;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 300px;
+  padding: 20px 30px;
+
+  background-color: rgba(106, 201, 230, 0.3);
+
+  grid-area: aside;
+}
+
+.main {
+  padding: 20px;
+
+  background-color: rgba(187, 127, 255, 0.3);
+
+  grid-area: main;
+}
+
+.title {
+  text-align: center;
+}
+
+.title h1 {
+  font-size: 50px;
+  font-family: "Pattaya", "Tahoma", sans-serif;
+}
+
+.footer {
+  font-size: 30px;
+  font-family: "Pattaya", "Tahoma", sans-serif;
+  text-align: center;
+  color: #ffffff;
+
+  background-color: rgba(17, 13, 133, 0.6);
+
+  grid-area: footer;
+}
+
+.logo {
+  width: 200px;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+.nav a {
+  margin: 20px;
+  padding: 10px 20px;
+
+  color: #ffffff;
+
+  background-color: #1616a0;
+  border-radius: 3px;
+}
+
+.nav a:hover {
+  background-color: #3f3fc9;
+}
+
+.aside .nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.aside a {
+  margin: 0 0 20px;
+
+  text-align: center;
+}
+
+.pharase__item {
+  display: none;
+  margin: 0;
+  padding: 20px;
+
+  border: 6px double #3f3fc9;
+  border-radius: 10px;
+}
+
+.pharase__item--active {
+  display: block;
+}
+
+.pharase__item cite {
+  font-size: 20px;
+  font-family: "Pattaya", "Tahoma", sans-serif;
+}
+
+.pharase__item p {
+  margin-bottom: 0;
+}
+
+.img404 img {
+  width: 200px;
+
+  text-align: center;
+}
