@@ -9,16 +9,10 @@ class Route
 
     $routes = explode('/', $_SERVER['REQUEST_URI']);
 
-    // if (!empty($routes)) {
-    //   $controller_name = $routes;
-    // }
-
-    // получаем имя контроллера
     if (!empty($routes[1])) {
       $controller_name = $routes[1];
     }
 
-    // получаем имя экшена
     if (!empty($routes[2])) {
       $action_name = $routes[2];
     }
@@ -39,7 +33,6 @@ class Route
       include "application/controllers/" . $controller_file;
     } else {
       Route::ErrorPage404();
-      // ErrorPage404();
     }
 
     $controller = new $controller_name;
@@ -49,7 +42,6 @@ class Route
       $controller->$action();
     } else {
       Route::ErrorPage404();
-      // ErrorPage404();
     }
   }
 

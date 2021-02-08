@@ -7,12 +7,12 @@
   <title>PHP2.MCV-фреймворк</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
   <header class="header">
-    <div class="logo"><img src="/img/bg.png" alt="Logo"></div>
+    <div class="logo"><img src="img/bg.png" alt="Logo"></div>
     <nav class="nav">
       <a href="/">Главная</a>
       <a href="/about">Обо мне</a>
@@ -77,7 +77,7 @@
   <footer class="footer">
     <p>PHP2.2021.Модуль 26</p>
   </footer>
-  <script src="/js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
