@@ -1,44 +1,10 @@
 <?php
-require_once 'config.php';
+session_start();
 
-$errors = [];
-$messages = [];
+require 'config/config.php';
+require 'config/config-uploads-comment.php';
 
-$imageFileName = $_GET['name'];
-$commentFilePath = COMMENT_DIR . '/' . $imageFileName . '.txt';
 
-// Если коммент был отправлен
-if (!empty($_POST['comment'])) {
-
-    $comment = trim($_POST['comment']);
-
-    // Валидация коммента
-    if ($comment === '') {
-        $errors[] = 'Вы не ввели текст комментария';
-    }
-
-    // Если нет ошибок записываем коммент
-    if (empty($errors)) {
-
-        // Чистим текст, земеняем переносы строк на <br/>, дописываем дату
-        $comment = strip_tags($comment);
-        $comment = str_replace(array(["\r\n", "\r", "\n", "\\r", "\\n", "\\r\\n"]), "<br/>", $comment);
-        $comment = date('d.m.y H:i') . ': ' . $comment;
-
-        // Дописываем текст в файл (будет создан, если еще не существует)
-        file_put_contents($commentFilePath,  $comment . "\n", FILE_APPEND);
-
-        $messages[] = 'Комментарий был добавлен';
-
-        fclose($comment);
-    }
-}
-
-// Получаем список комментов
-$comments = file_exists($commentFilePath)
-    ? file($commentFilePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)
-    : [];
-$GLOBALS['comments'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,13 +17,48 @@ $GLOBALS['comments'];
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="css/style.css">
+
     <title>Галерея изображений | Файл <?php echo $imageFileName; ?></title>
 </head>
 
 <body>
-
-
     <div class="container pt-4">
+        <div class="form-box">
+
+            <?php if (!$_SESSION['user']) { ?>
+                <h5>Комментарии, могут оставлять только авторизованные пользователи</h5>
+                <div class="link">
+                    <a href="index.php" class="btn btn-primary">Войти</a>
+                    <a href="reg.php" class="btn btn-primary">Зарегистрироваться</a>
+                </div>
+            <?php } else { ?>
+                <div class="welcom">
+                    <h2>Привет <?php echo $_SESSION[('user')]['login']; ?>!</h2>
+                    <a class="btn btn-primary" href="config/logout.php">Выход</a>
+                </div>
+            <?php } ?>
+
+            <?php
+            if ($_SESSION['error']) { ?>
+                <div class="alert alert-danger"><?php echo $_SESSION['error']; ?></div>
+            <?php unset($_SESSION['error']);
+            }; ?>
+
+            <?php if ($_SESSION['message']) { ?>
+                <div class="alert alert-success"><?php echo $_SESSION['message']; ?></div>
+            <?php unset($_SESSION['message']);
+            }; ?>
+
+            <!-- Вывод сообщений об успехе/ошибке -->
+            <?php foreach ($errors as $error) : ?>
+                <div class="alert alert-danger"><?php echo $error; ?></div>
+            <?php endforeach; ?>
+
+            <?php foreach ($messages as $message) : ?>
+                <div class="alert alert-success"><?php echo $message; ?></div>
+            <?php endforeach; ?>
+        </div>
 
         <h1 class="mb-4"><a href="<?php echo URL; ?>">Галерея изображений</a></h1>
 
@@ -86,15 +87,17 @@ $GLOBALS['comments'];
                     <p class="text-muted">Пока ни одного коммантария, будте первым!</p>
                 <?php endif; ?>
 
-                <!-- Форма добавления комментария -->
-                <form method="post">
-                    <div class="form-group">
-                        <label for="comment">Ваш комментарий</label>
-                        <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
-                    </div>
-                    <hr>
-                    <button type="submit" class="btn btn-primary">Отправить</button>
-                </form>
+                <?php if ($_SESSION['user']) { ?>
+                    <!-- Форма добавления комментария -->
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="comment">Ваш комментарий</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="3" required minlength="10" maxlength="200">Длинна комментария от 10 до 200 символов</textarea>
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                <?php }; ?>
             </div>
         </div><!-- /.row -->
 

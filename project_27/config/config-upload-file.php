@@ -6,11 +6,13 @@ $messages = [];
 
 // Если файл был отправлен
 if (!empty($_FILES)) {
-
+  print_r($_FILES['files']);
   // Проходим в цикле по файлам
   for ($i = 0; $i < count($_FILES['files']['name']); $i++) {
 
     $fileName = $_FILES['files']['name'][$i];
+    $fileNameCmps = explode(".", $fileName);
+    $fileExtension = strtolower(end($fileNameCmps));
 
     // Проверяем размер
     if ($_FILES['files']['size'][$i] > UPLOAD_MAX_SIZE) {
@@ -24,17 +26,30 @@ if (!empty($_FILES)) {
       continue;
     }
 
-    $filePath = UPLOAD_DIR . '/' . basename($fileName);
+    $filePath = UPLOAD_DIR . '/' . time() . '.' . $fileExtension;
 
     // Пытаемся загрузить файл
     if (!move_uploaded_file($_FILES['files']['tmp_name'][$i], $filePath)) {
       $errors[] = 'Ошибка загрузки файла ' . $fileName;
       continue;
+    } else {
+      // $login_user = $_SESSION['user']['login'];
+      // echo $_SESSION['user']['login'] . ', ' . $_FILES['files']['name'][$i] . ', ' . $filePath;
+      // // mysqli_query($connect, "INSERT INTO images (login, name, path) VALUES ('$login_user', 'basename($fileName)', '$filePath')");
+      // echo "OK";
     }
   }
 
   if (empty($errors)) {
     $messages[] = 'Файлы были загружены';
+
+
+
+
+
+
+    // header('Location: ../index.php');
+    // exit();
   }
 }
 

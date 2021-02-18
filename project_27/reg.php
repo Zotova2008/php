@@ -1,46 +1,67 @@
+<?php
+session_start();
+
+// if ($_SESSION['user']) {
+//     header('Location: index.php');
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Регистрация</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="css/style.css">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="css/style.css">
-
+    <title>Регистрация</title>
 </head>
 
 <body>
+    <div class="container pt-4">
 
-  <div class="container pt-4">
+        <div class="form-box">
+            <h5>Зарегистрироваться</h5>
+            <form class="form form-in" action="config/singup.php" method="POST">
+                <div class="form__item">
+                    <label for="login">Логин:</label>
+                    <input type="text" name="login" id="login" placeholder="Введите логин">
+                </div>
+                <div class="form__item">
+                    <label for="password">Пароль:</label>
+                    <input type="password" name="password" id="password" placeholder="Введите пароль">
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Зарегистрироваться</button>
+                <p>У вас уже есть аккаунт? - <a href="index.php">Авторизуйтесь</a></p>
 
-    <h2>Регистрация</h2>
+                <?php
+                if ($_SESSION['error']) { ?>
+                    <div class="alert alert-danger"><?php echo $_SESSION['error']; ?></div>
+                <?php unset($_SESSION['error']);
+                }; ?>
 
-    <form class="form" action="config/save-user.php" method="post">
-      <input name="login" type="text" size="15" maxlength="15" placeholder="Логин">
-      <input name="password" type="password" size="15" maxlength="15" placeholder="Пароль">
+                <?php if ($_SESSION['message']) { ?>
+                    <div class="alert alert-success"><?php echo $_SESSION['message']; ?></div>
+                <?php unset($_SESSION['message']);
+                }; ?>
 
-      <div class="form__item">
-        <button class="btn btn-primary" type="submit" name="submit">Зарегистрироваться</button>
-      </div>
-    </form>
+            </form>
+        </div>
 
-    <ul class="btn-other">
-      <li><a class="btn btn-secondary" href="login.php">Авторизация</a></li>
-      <li><a class="btn btn-secondary" href="index.php">Главная</a></li>
-    </ul>
-  </div>
+        <h1 class="mb-4"><a href="index.php">На главную</a></h1>
 
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script>
+
+        </script>
 </body>
 
 </html>
