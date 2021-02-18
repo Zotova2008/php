@@ -11,11 +11,12 @@ include 'config/config-upload-file.php';
 
 // echo $_SESSION['user'];
 
-if (isset($_SESSION['user'])) {
-  $_SESSION['user'] = [
-    "login" => $user['login'],
-  ];
-}
+// if (isset($_SESSION['user'])) {
+//   var_dump($_SESSION);
+//   // $_SESSION['user'] = [
+//   //   "login" => $user['login'],
+//   // ];
+// }
 
 ?>
 <!doctype html>
