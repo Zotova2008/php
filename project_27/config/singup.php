@@ -18,12 +18,17 @@ if ($resCheck > 0) {
     mysqli_query($connect, "INSERT INTO users (login, password) VALUES ('$login', '$password')");
 
     $check = mysqli_query($connect, "SELECT * FROM users WHERE login = '$login'");
-    // Получаем массив из выборки
-    $user = mysqli_fetch_assoc($check);
-    $_SESSION['user'] = [
-      "id" => $user['id'],
-      "login" => $user['login'],
-    ];
+    $resCheck = mysqli_num_rows($check);
+
+    if ($resCheck > 0) {
+      // Получаем массив из выборки
+      $user = mysqli_fetch_assoc($check);
+      $_SESSION['user'] = [
+        "id" => $user['id'],
+        "login" => $user['login'],
+      ];
+    }
+
     $_SESSION['message'] = "Регистрация прошла успешно.";
 
     header('Location: ../index.php');

@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
 session_start();
 // Подключаем настройки пути для загружаемых файлов
 include 'config/config.php';
@@ -6,19 +9,13 @@ include 'config/config.php';
 // Для обработки загружаемых файлов через форму
 include 'config/config-upload-file.php';
 
-if ($_SESSION['user']) {
+// echo $_SESSION['user'];
+
+if (isset($_SESSION['user'])) {
   $_SESSION['user'] = [
     "login" => $user['login'],
   ];
-
-  // echo $_SESSION['user']['login'] . ', OK';
-  echo 'Все хорошо';
-  var_dump($_SESSION['user']);
-  // var_dump($user);
 }
-// else {
-//   echo $_SESSION['user']['login'] . ', NOt OK';
-// }
 
 ?>
 <!doctype html>
@@ -42,7 +39,7 @@ if ($_SESSION['user']) {
 
     <div class="form-box">
 
-      <?php if (!$_SESSION['user']) { ?>
+      <?php if (!isset($_SESSION['user'])) { ?>
         <h5>Вы не авторизованы</h5>
         <form class="form form-in" method="POST" action="config/singin.php">
           <div class="form__item">
@@ -66,12 +63,12 @@ if ($_SESSION['user']) {
       <?php } ?>
 
       <?php
-      if ($_SESSION['error']) { ?>
+      if (isset($_SESSION['error'])) { ?>
         <div class="alert alert-danger"><?php echo $_SESSION['error']; ?></div>
       <?php unset($_SESSION['error']);
       }; ?>
 
-      <?php if ($_SESSION['message']) { ?>
+      <?php if (isset($_SESSION['message'])) { ?>
         <div class="alert alert-success"><?php echo $_SESSION['message']; ?></div>
       <?php unset($_SESSION['message']);
       }; ?>
@@ -96,7 +93,7 @@ if ($_SESSION['user']) {
             <div class="img-container col-12 col-sm-3 mb-4">
               <form method="post">
                 <input type="hidden" name="name" value="<?php echo $file; ?>">
-                <?php if ($_SESSION['user']) { ?>
+                <?php if (isset($_SESSION['user'])) { ?>
                   <button type="submit" class="img-delete btn btn-primary" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -113,7 +110,7 @@ if ($_SESSION['user']) {
       <?php endif; ?>
     </div>
 
-    <?php if ($_SESSION['user']) { ?>
+    <?php if (isset($_SESSION['user'])) { ?>
       <!-- Форма загрузки файлов -->
       <form method="post" enctype="multipart/form-data">
         <div class="custom-file">

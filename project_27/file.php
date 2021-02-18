@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
 session_start();
 
 require 'config/config.php';
@@ -26,7 +28,7 @@ require 'config/config-uploads-comment.php';
     <div class="container pt-4">
         <div class="form-box">
 
-            <?php if (!$_SESSION['user']) { ?>
+            <?php if (!isset($_SESSION['user'])) { ?>
                 <h5>Комментарии, могут оставлять только авторизованные пользователи</h5>
                 <div class="link">
                     <a href="index.php" class="btn btn-primary">Войти</a>
@@ -34,18 +36,18 @@ require 'config/config-uploads-comment.php';
                 </div>
             <?php } else { ?>
                 <div class="welcom">
-                    <h2>Привет <?php echo $_SESSION[('user')]['login']; ?>!</h2>
+                    <h2>Привет <?php echo $_SESSION['user']['login']; ?>!</h2>
                     <a class="btn btn-primary" href="config/logout.php">Выход</a>
                 </div>
             <?php } ?>
 
             <?php
-            if ($_SESSION['error']) { ?>
+            if (isset($_SESSION['error'])) { ?>
                 <div class="alert alert-danger"><?php echo $_SESSION['error']; ?></div>
             <?php unset($_SESSION['error']);
             }; ?>
 
-            <?php if ($_SESSION['message']) { ?>
+            <?php if (isset($_SESSION['message'])) { ?>
                 <div class="alert alert-success"><?php echo $_SESSION['message']; ?></div>
             <?php unset($_SESSION['message']);
             }; ?>
@@ -87,7 +89,7 @@ require 'config/config-uploads-comment.php';
                     <p class="text-muted">Пока ни одного коммантария, будте первым!</p>
                 <?php endif; ?>
 
-                <?php if ($_SESSION['user']) { ?>
+                <?php if (isset($_SESSION['user'])) { ?>
                     <!-- Форма добавления комментария -->
                     <form method="post">
                         <div class="form-group">

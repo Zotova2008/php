@@ -1,4 +1,9 @@
-<?php $errors = [];
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
+
+$errors = [];
 $messages = [];
 
 $imageFileName = $_GET['name'];

@@ -1,9 +1,12 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
 session_start();
 
-// if ($_SESSION['user']) {
-//     header('Location: index.php');
-// }
+if (isset($_SESSION['user'])) {
+    header('Location: index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,13 +41,12 @@ session_start();
                 <button type="submit" name="submit" class="btn btn-primary">Зарегистрироваться</button>
                 <p>У вас уже есть аккаунт? - <a href="index.php">Авторизуйтесь</a></p>
 
-                <?php
-                if ($_SESSION['error']) { ?>
+                <?php if (isset($_SESSION['error'])) { ?>
                     <div class="alert alert-danger"><?php echo $_SESSION['error']; ?></div>
                 <?php unset($_SESSION['error']);
                 }; ?>
 
-                <?php if ($_SESSION['message']) { ?>
+                <?php if (isset($_SESSION['message'])) { ?>
                     <div class="alert alert-success"><?php echo $_SESSION['message']; ?></div>
                 <?php unset($_SESSION['message']);
                 }; ?>
