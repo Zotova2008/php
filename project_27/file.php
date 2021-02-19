@@ -5,8 +5,9 @@ session_start();
 
 require 'config/config.php';
 require 'config/config-uploads-comment.php';
-
-
+if (isset($_SESSION['user'])) {
+    $login = $_SESSION['user']['login'];
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -21,7 +22,7 @@ require 'config/config-uploads-comment.php';
 
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Галерея изображений | Файл <?php echo $imageFileName; ?></title>
+    <title>Галерея изображений | Файл <?php echo $imgName; ?></title>
 </head>
 
 <body>
@@ -51,55 +52,71 @@ require 'config/config-uploads-comment.php';
                 <div class="alert alert-success"><?php echo $_SESSION['message']; ?></div>
             <?php unset($_SESSION['message']);
             }; ?>
-
-            <!-- Вывод сообщений об успехе/ошибке -->
-            <?php foreach ($errors as $error) : ?>
-                <div class="alert alert-danger"><?php echo $error; ?></div>
-            <?php endforeach; ?>
-
-            <?php foreach ($messages as $message) : ?>
-                <div class="alert alert-success"><?php echo $message; ?></div>
-            <?php endforeach; ?>
         </div>
 
         <h1 class="mb-4"><a href="<?php echo URL; ?>">Галерея изображений</a></h1>
 
         <!-- Вывод сообщений об успехе/ошибке -->
-        <?php foreach ($errors as $error) : ?>
-            <div class="alert alert-danger"><?php echo $error; ?></div>
-        <?php endforeach; ?>
 
-        <?php foreach ($messages as $message) : ?>
-            <div class="alert alert-success"><?php echo $message; ?></div>
-        <?php endforeach; ?>
 
-        <h2 class="mb-4">Файл <?php echo $imageFileName; ?></h2>
+        <h2 class="mb-4">Файл <?php echo $imgName; ?></h2>
 
         <div class="row">
             <div class="col-12 col-sm-8 offset-sm-2">
 
-                <img src="<?php echo URL . '/' . UPLOAD_DIR . '/' . $imageFileName ?>" class="img-thumbnail mb-4" alt="<?php echo $imageFileName ?>">
+                <img src="<?php echo URL . '/' . $imgPath ?>" class="img-thumbnail mb-4" alt="<?php echo $imgName ?>">
 
                 <h3>Комментарии</h3>
-                <?php if (!empty($comments)) : ?>
-                    <?php foreach ($comments as $key => $comment) : ?>
-                        <p class="<?php echo (($key % 2) > 0) ? 'bg-light' : ''; ?>"><?php echo $comment; ?></p>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <p class="text-muted">Пока ни одного коммантария, будте первым!</p>
-                <?php endif; ?>
+                <?php foreach ($errors as $error) : ?>
+                    <div class="alert alert-danger"><?php echo $error; ?></div>
+                <?php endforeach; ?>
+
+                <?php foreach ($messages as $message) : ?>
+                    <div class="alert alert-success"><?php echo $message; ?></div>
+                <?php endforeach; ?>
 
                 <?php if (isset($_SESSION['user'])) { ?>
                     <!-- Форма добавления комментария -->
                     <form method="post">
                         <div class="form-group">
                             <label for="comment">Ваш комментарий</label>
-                            <textarea class="form-control" id="comment" name="comment" rows="3" required minlength="10" maxlength="200">Длинна комментария от 10 до 200 символов</textarea>
+                            <textarea class="form-control" id="comment" name="comment" rows="3" required minlength="10" maxlength="200" placeholder="Длинна комментария от 10 до 200 символов"></textarea>
                         </div>
-                        <hr>
                         <button type="submit" class="btn btn-primary">Отправить</button>
                     </form>
                 <?php }; ?>
+
+                <?php if (!empty($dataCommit)) : ?>
+                    <?php foreach ($dataCommit as $comm) : ?>
+                        <?php
+                        $authorComm = $comm['login'];
+                        $text = $comm['text'];
+                        $time = $comm['time'];
+                        $id = $comm['id'];
+                        ?>
+                        <div class="comment-box">
+                            <div class="comment-box__item">
+                                <p class="comment-box__auth"><?php echo $authorComm; ?></p>
+                                <p class="comment-box__time"><?php echo $time; ?></p>
+                                <form method="post">
+                                    <input type="hidden" name="id_comment" value="<?php echo $id; ?>">
+                                    <?php if (isset($_SESSION['user'])) {
+                                        if ($login === $authorComm) { ?>
+                                            <button type="submit" class="comment-box__del" name="comm_del" aria-label="Удалить">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                    <?php }
+                                    }; ?>
+                                </form>
+                            </div>
+                            <p class="comment-box__text"><?php echo $text; ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <p class=" text-muted">Пока ни одного коммантария, будте первым!</p>
+                <?php endif; ?>
+
+
             </div>
         </div><!-- /.row -->
 

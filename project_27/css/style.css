@@ -58,3 +58,30 @@
 .welcome h2 {
   margin-bottom: 0;
 }
+
+.comment-box {
+  margin-bottom: 20px;
+  padding: 10px;
+
+  border-bottom: 2px solid #e3e3e3;
+}
+
+.comment-box__item {
+  display: flex;
+  justify-content: space-between;
+
+  font-style: italic;
+  color: grey;
+}
+
+.comment-box__auth {
+  font-weight: bold;
+}
+
+.comment-box__del {
+  font-size: 20px;
+  color: red;
+
+  background: none;
+  border: none;
+}

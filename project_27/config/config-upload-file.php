@@ -10,7 +10,6 @@ $messages = [];
 
 // Если файл был отправлен
 if (!empty($_FILES)) {
-  print_r($_FILES['files']);
   // Проходим в цикле по файлам
   for ($i = 0; $i < count($_FILES['files']['name']); $i++) {
 
@@ -64,6 +63,13 @@ if (isset($_POST['img_del'])) {
   $sqlDel = mysqli_query($connect, "DELETE FROM images WHERE name = '$nameImgDel'");
   // Удаляем из папки
   unlink($pathImgDel);
+
+  $sqlCommit = mysqli_query($connect, "SELECT * FROM comments WHERE img_name = '$nameImgDel'");
+  $resCommit = mysqli_num_rows($sqlCommit);
+
+  if ($resCommit > 0) {
+    $resCommitDel = mysqli_query($connect, "DELETE FROM comments WHERE img_name = '$nameImgDel'");
+  }
 
   // "DELETE FROM `images` WHERE `images`.`id` = 3"?
 
