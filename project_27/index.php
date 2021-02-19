@@ -15,6 +15,7 @@ if (isset($_SESSION['user'])) {
   $login = $_SESSION['user']['login'];
 }
 
+var_dump($_POST);
 ?>
 <!doctype html>
 <html lang="en">
@@ -98,7 +99,7 @@ if (isset($_SESSION['user'])) {
                 <input type="hidden" name="name" value="<?php echo $nameFile; ?>">
                 <?php if (isset($_SESSION['user'])) {
                   if ($login === $authorFile) { ?>
-                    <button type="submit" class="img-delete btn btn-primary" aria-label="Close">
+                    <button type="submit" class="img-delete btn btn-primary" name="img_del" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                 <?php }

@@ -29,8 +29,9 @@ if (!empty($_FILES)) {
       $errors[] = 'Недопустимый формат файла ' . $fileName;
       continue;
     }
-
-    $filePath = UPLOAD_DIR . '/' . time() . '.' . $fileExtension;
+    $img_name = time();
+    $img_name = $i . $img_name;
+    $filePath = UPLOAD_DIR . '/' . $i . $img_name . '.' . $fileExtension;
 
     // Пытаемся загрузить файл
     if (!move_uploaded_file($_FILES['files']['tmp_name'][$i], $filePath)) {
@@ -38,7 +39,6 @@ if (!empty($_FILES)) {
       continue;
     } else {
       $login_user = $_SESSION['user']['login'];
-      $img_name = $_FILES['files']['name'][$i];
       mysqli_query($connect, "INSERT INTO images (login, name, path) VALUES ('$login_user', '$img_name', '$filePath')");
     }
   }
@@ -51,27 +51,41 @@ if (!empty($_FILES)) {
 }
 
 // Если файл был удален
-if (!empty($_POST['name'])) {
+if (isset($_POST['img_del'])) {
 
-  $filePath = UPLOAD_DIR . '/' . $_POST['name'];
-  $commentPath = COMMENT_DIR . '/' . $_POST['name'] . '.txt';
+  $imgDel = $_POST['name'];
 
-  // Удаляем изображение
-  unlink($filePath);
+  $sql = mysqli_query($connect, "SELECT * FROM images WHERE name = '$imgDel'");
+  $res = mysqli_fetch_assoc($sql);
 
-  // Удаляем файл комментариев, если он существует
-  if (file_exists($commentPath)) {
-    unlink($commentPath);
-  }
+  $nameImgDel = $res['name'];
+  $pathImgDel = $res['path'];
 
-  $messages[] = 'Файл был удален';
+  $sqlDel = mysqli_query($connect, "DELETE FROM images WHERE name = '$nameImgDel'");
+  // Удаляем из папки
+  unlink($pathImgDel);
+
+  // "DELETE FROM `images` WHERE `images`.`id` = 3"?
+
+  // $filePath = UPLOAD_DIR . '/' . $_POST['name'];
+  // $commentPath = COMMENT_DIR . '/' . $_POST['name'] . '.txt';
+
+  // // Удаляем изображение
+  // unlink($filePath);
+
+  // // Удаляем файл комментариев, если он существует
+  // if (file_exists($commentPath)) {
+  //   unlink($commentPath);
+  // }
+
+  // $messages[] = 'Файл был удален';
 }
 
 // Получаем список файлов, исключаем системные
-$files = scandir(UPLOAD_DIR);
-$files = array_filter($files, function ($file) {
-  return !in_array($file, ['.', '..', '.gitkeep']);
-});
+// $files = scandir(UPLOAD_DIR);
+// $files = array_filter($files, function ($file) {
+//   return !in_array($file, ['.', '..', '.gitkeep']);
+// });
 // Создаем массив из картинок из БД
 $imgSql = mysqli_query($connect, "SELECT * FROM images");
 // Получаем массив из выборки
