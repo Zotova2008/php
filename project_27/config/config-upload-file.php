@@ -70,28 +70,7 @@ if (isset($_POST['img_del'])) {
   if ($resCommit > 0) {
     $resCommitDel = mysqli_query($connect, "DELETE FROM comments WHERE img_name = '$nameImgDel'");
   }
-
-  // "DELETE FROM `images` WHERE `images`.`id` = 3"?
-
-  // $filePath = UPLOAD_DIR . '/' . $_POST['name'];
-  // $commentPath = COMMENT_DIR . '/' . $_POST['name'] . '.txt';
-
-  // // Удаляем изображение
-  // unlink($filePath);
-
-  // // Удаляем файл комментариев, если он существует
-  // if (file_exists($commentPath)) {
-  //   unlink($commentPath);
-  // }
-
-  // $messages[] = 'Файл был удален';
 }
-
-// Получаем список файлов, исключаем системные
-// $files = scandir(UPLOAD_DIR);
-// $files = array_filter($files, function ($file) {
-//   return !in_array($file, ['.', '..', '.gitkeep']);
-// });
 // Создаем массив из картинок из БД
 $imgSql = mysqli_query($connect, "SELECT * FROM images");
 // Получаем массив из выборки
