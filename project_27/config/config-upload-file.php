@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
-
+require 'connect.php';
 // Массив ошибок
 $errors = [];
 // Массив сообщений
@@ -37,7 +37,6 @@ if (!empty($_FILES)) {
       $errors[] = 'Ошибка загрузки файла ' . $fileName;
       continue;
     } else {
-      require 'connect.php';
       $login_user = $_SESSION['user']['login'];
       $img_name = $_FILES['files']['name'][$i];
       mysqli_query($connect, "INSERT INTO images (login, name, path) VALUES ('$login_user', '$img_name', '$filePath')");
@@ -73,3 +72,7 @@ $files = scandir(UPLOAD_DIR);
 $files = array_filter($files, function ($file) {
   return !in_array($file, ['.', '..', '.gitkeep']);
 });
+// Создаем массив из картинок из БД
+$imgSql = mysqli_query($connect, "SELECT * FROM images");
+// Получаем массив из выборки
+for ($dataImg = []; $row = mysqli_fetch_assoc($imgSql); $dataImg[] = $row);

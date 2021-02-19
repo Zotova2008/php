@@ -11,12 +11,9 @@ include 'config/config-upload-file.php';
 
 // echo $_SESSION['user'];
 
-// if (isset($_SESSION['user'])) {
-//   var_dump($_SESSION);
-//   // $_SESSION['user'] = [
-//   //   "login" => $user['login'],
-//   // ];
-// }
+if (isset($_SESSION['user'])) {
+  $login = $_SESSION['user']['login'];
+}
 
 ?>
 <!doctype html>
@@ -87,21 +84,28 @@ include 'config/config-upload-file.php';
 
     <!-- Вывод изображений -->
     <div class="mb-4">
-      <?php if (!empty($files)) : ?>
+      <?php if (!empty($dataImg)) : ?>
         <div class="row">
-          <?php foreach ($files as $file) : ?>
-
+          <?php foreach ($dataImg as $file) : ?>
+            <?php
+            $nameFile = $file['name'];
+            $pathFile = $file['path'];
+            $authorFile = $file['login'];
+            $timeFile = $file['time'];
+            ?>
             <div class="img-container col-12 col-sm-3 mb-4">
               <form method="post">
-                <input type="hidden" name="name" value="<?php echo $file; ?>">
-                <?php if (isset($_SESSION['user'])) { ?>
-                  <button type="submit" class="img-delete btn btn-primary" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                <?php }; ?>
+                <input type="hidden" name="name" value="<?php echo $nameFile; ?>">
+                <?php if (isset($_SESSION['user'])) {
+                  if ($login === $authorFile) { ?>
+                    <button type="submit" class="img-delete btn btn-primary" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                <?php }
+                }; ?>
               </form>
-              <a data-fancybox="gallery" href="<?php echo URL . '/' . UPLOAD_DIR . '/' . $file ?>"><img src="<?php echo URL . '/' . UPLOAD_DIR . '/' . $file ?>" class="img-thumbnail" alt="<?php echo $file; ?>"></a>
-              <a class="comments-link btn btn-primary" href="<?php echo URL . '/file.php?name=' . $file; ?>" title="Просмотр полного изображения">Комментировать</a>
+              <a data-fancybox="gallery" href="<?php echo URL . '/' . $pathFile; ?>"><img src="<?php echo URL . '/' . $pathFile; ?>" class="img-thumbnail" alt="<?php echo $nameFile; ?>"></a>
+              <a class="comments-link btn btn-primary" href="<?php echo URL . '/file.php?name=' . $nameFile; ?>" title="Просмотр полного изображения">Комментировать</a>
             </div>
 
           <?php endforeach; ?>
