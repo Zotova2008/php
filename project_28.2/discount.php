@@ -1,44 +1,44 @@
 <?php
-interface ICommand
+interface interfaceCommand
 {
-  function onCommand($name);
+	function onCommand($name);
 }
 
-class DiscountCommandChain
+class Discount
 {
-  private $_commands = array();
-  public function addCommand($cmd)
-  {
-    $this->_commands[] = $cmd;
-  }
+	private $_commands = array();
+	public function addCommand($cmd)
+	{
+		$this->_commands[] = $cmd;
+	}
 
-  public function runCommand($name)
-  {
-    foreach ($this->_commands as $cmd) {
-      if ($cmd->onCommand($name))
-        return;
-    }
-  }
+	public function runCommand($name)
+	{
+		foreach ($this->_commands as $cmd) {
+			if ($cmd->onCommand($name))
+				return;
+		}
+	}
 }
 
-class PercentDiscount implements ICommand
+class PercentDiscount implements InterfaceCommand
 {
-  public function onCommand($type)
-  {
-    if ($type == 0) {
-      echo "Возможно применение скидки" . '</br>';
-    } else echo  "Применение скидки невозможно" . '</br>';
-  }
+	public function onCommand($type)
+	{
+		if ($type == 0) {
+			echo "У Вас есть процентная скидка" . '</br>';
+		} else echo  "Процентная скидка не предоставляется" . '</br>';
+	}
 }
 
-class DeliveryDiscount implements ICommand
+class DeliveryDiscount implements interfaceCommand
 {
-  public function onCommand($type)
-  {
-    if ($type == 1) {
-      echo "Возможна скидка на доставку" . '</br>';
-    } else {
-      echo  "Скидка на доставку невозможна" . '</br>';
-    }
-  }
+	public function onCommand($type)
+	{
+		if ($type == 1) {
+			echo "Возможна скидка на доставку" . '</br>';
+		} else {
+			echo  "Скидка на доставку невозможна" . '</br>';
+		}
+	}
 }

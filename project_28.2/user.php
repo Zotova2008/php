@@ -1,157 +1,156 @@
 <?php
-interface iUser
+interface interfaceUser
 {
-    function getName();
-    function getSurname();
-    function getPhone();
-    function getEmail();
-    function getAddress();
+	function getName();
+	function getSurname();
+	function getEmail();
+	function getAddress();
+	function getPhone();
 }
 
-abstract class User implements iUser
+abstract class User implements interfaceUser
 {
-    static int $idcounter = 0;
-    private int $id;
-    private string $name;
-    private string $surname;
-    private string $phone;
-    private string $email;
-    private string $address;
+	static int $idcounter = 0;
+	private int $id;
+	private string $name;
+	private string $surname;
+	private string $email;
+	private string $address;
+	private string $phone;
 
-    public function __construct(string $Name, string $Surname = '', string $Phone, string $Email, string $Address)
-    {
-        $this->id = static::$idcounter;
-        static::$idcounter = static::$idcounter + 1;
-        $this->name = $Name;
-        $this->surname = $Surname;
-        $this->phone = $Phone;
-        $this->email = $Email;
-        $this->address = $Address;
-    }
+	public function __construct(string $Name, string $Surname = '', string $Phone, string $Email, string $Address)
+	{
+		$this->id = static::$idcounter;
+		static::$idcounter = static::$idcounter + 1;
+		$this->name = $Name;
+		$this->surname = $Surname;
+		$this->phone = $Phone;
+		$this->email = $Email;
+		$this->address = $Address;
+	}
 
-    public function GetName()
-    {
-        return $this->name;
-    }
+	public function getName()
+	{
+		return $this->name;
+	}
 
-    function getSurname()
-    {
-        return $this->surname;
-    }
+	function getSurname()
+	{
+		return $this->surname;
+	}
+	function getPhone()
+	{
+		return $this->phone;
+	}
 
-    function getPhone()
-    {
-        return $this->phone;
-    }
+	function getEmail()
+	{
+		return $this->email;
+	}
 
-    function getEmail()
-    {
-        return $this->email;
-    }
-
-    function getAddress()
-    {
-        return $this->address;
-    }
+	function getAddress()
+	{
+		return $this->address;
+	}
 }
 
-interface iCourier
+interface interfaceCourier
 {
-    function getWorktime();
-    function getTransportType();
+	function getTransportType();
+	function getWorktime();
 }
 
-class Courier extends User implements iCourier
+class Courier extends User implements interfaceCourier
 {
-    private $worktime;
-    private $transportType;
+	private $transportType;
+	private $workTime;
 
-    public function __construct(string $Name, string $Surname = '', string $Phone, string $Email, string $Address, int $Worktime = 0, int $TransportType = 0)
-    {
-        $this->id = static::$idcounter;
-        static::$idcounter = static::$idcounter + 1;
-        $this->name = $Name;
-        $this->surname = $Surname;
-        $this->phone = $Phone;
-        $this->email = $Email;
-        $this->address = $Address;
-        $this->worktime = $Worktime;
-        $this->transportType = $TransportType;
-    }
+	public function __construct(string $Name, string $Surname = '', string $Phone, string $Email, string $Address, int $Worktime = 0, int $TransportType = 0)
+	{
+		$this->id = static::$idcounter;
+		static::$idcounter = static::$idcounter + 1;
+		$this->name = $Name;
+		$this->surname = $Surname;
+		$this->phone = $Phone;
+		$this->email = $Email;
+		$this->address = $Address;
+		$this->workTime = $Worktime;
+		$this->transportType = $TransportType;
+	}
 
-    public function getWorktime()
-    {
-        return $this->worktime;
-    }
+	public function getWorktime()
+	{
+		return $this->workTime;
+	}
 
-    function getTransportType()
-    {
-        return $this->transportType;
-    }
+	function getTransportType()
+	{
+		return $this->transportType;
+	}
 }
 
 class CourierFactory
 {
-    public static function Create(string $Name, string $Surname = '', string $Phone, string $Email, string $Address, int $Worktime = 0, int $TransportType = 0)
-    {
-        return new Courier($Name, $Surname, $Phone, $Email, $Address, $Worktime, $TransportType);
-    }
+	public static function Create(string $Name, string $Surname = '', string $Phone, string $Email, string $Address, int $Worktime = 0, int $TransportType = 0)
+	{
+		return new Courier($Name, $Surname, $Phone, $Email, $Address, $Worktime, $TransportType);
+	}
 }
 
 interface iCustomer
 {
-    function getType();
-    function getStatus();
-    function setStatus(int $Status);
+	function getType();
+	function getStatus();
+	function setStatus(int $Status);
 }
 
 class Customer extends User implements iCustomer
 {
-    private static $types = array(
-        0 => 'normal',
-        1 => 'VIP'
-    );
-    private static $statuses = array(
-        0 => 'new',
-        1 => 'not active'
-    );
+	private static $types = array(
+		0 => 'normal',
+		1 => 'VIP'
+	);
+	private static $statuses = array(
+		0 => 'new',
+		1 => 'not active'
+	);
 
-    private $type;
-    private $status;
+	private $type;
+	private $status;
 
-    public function __construct(string $Name, string $Surname = '', string $Phone, string $Email, string $Address, int $Type = 0)
-    {
-        $this->id = static::$idcounter;
-        static::$idcounter = static::$idcounter + 1;
-        $this->name = $Name;
-        $this->surname = $Surname;
-        $this->phone = $Phone;
-        $this->email = $Email;
-        $this->address = $Address;
-        $this->type = static::$types[$Type];
-        $this->setStatus(0);
-    }
+	public function __construct(string $Name, string $Surname = '', string $Phone, string $Email, string $Address, int $Type = 0)
+	{
+		$this->id = static::$idcounter;
+		static::$idcounter = static::$idcounter + 1;
+		$this->name = $Name;
+		$this->surname = $Surname;
+		$this->phone = $Phone;
+		$this->email = $Email;
+		$this->address = $Address;
+		$this->type = static::$types[$Type];
+		$this->setStatus(0);
+	}
 
-    public function getType()
-    {
-        return $this->type;
-    }
+	public function getType()
+	{
+		return $this->type;
+	}
 
-    public function getStatus()
-    {
-        return $this->status;
-    }
+	public function getStatus()
+	{
+		return $this->status;
+	}
 
-    public function setStatus(int $Status)
-    {
-        $this->status = static::$statuses[$Status];
-    }
+	public function setStatus(int $Status)
+	{
+		$this->status = static::$statuses[$Status];
+	}
 }
 
 class CustomerFactory
 {
-    public static function Create(string $Name, string $Surname = '', string $Phone, string $Email, string $Address, int $Type = 0)
-    {
-        return new Customer($Name, $Surname, $Phone, $Email, $Address, $Type);
-    }
+	public static function Create(string $Name, string $Surname = '', string $Phone, string $Email, string $Address, int $Type = 0)
+	{
+		return new Customer($Name, $Surname, $Phone, $Email, $Address, $Type);
+	}
 }
