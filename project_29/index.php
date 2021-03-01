@@ -8,18 +8,11 @@ session_start();
 include 'config/config.php';
 include 'config/singvk.php';
 
-// if (isset($_SESSION)) {
-//   echo '<br>';
-//   echo 'var_dump($_SESSION)' . '<br>';
-//   var_dump($_SESSION);
-//   echo '<br>';
-// }
+echo '<br>$_SESSION<br><pre>';
+print_r($_SESSION);
+echo '</pre><br>';
 
-// if (isset($_SESSION['user'])) {
-//   $login = $_SESSION['user']['login'];
-//   echo 'юзер';
-//   echo $_SESSION['user']['login'] . '<br>';
-// }
+
 
 ?>
 <!doctype html>
@@ -41,14 +34,9 @@ include 'config/singvk.php';
 
     <div class="form-box">
 
-      <?php if (!isset($_SESSION['user']) === !isset($_SESSION['user_vk'])) {
-        var_dump(!isset($_SESSION['user']));
-        var_dump(!isset($_SESSION['user_vk']));
-      ?>
+      <?php if (!isset($_SESSION['user'])) { ?>
         <h5>Вы не авторизованы</h5>
-        <form class="form form-in" method="POST">
-          <p>+79646626619</p>
-          <p>dima040313</p>
+        <form class="form form-in" method="POST" action="config/singin.php">
           <div class="form__item">
             <label for="login">Логин:</label>
             <input type="text" name="login" id="login" placeholder="Введите логин">
@@ -57,7 +45,7 @@ include 'config/singvk.php';
             <label for="password">Пароль:</label>
             <input type="password" name="password" id="password" placeholder="Введите пароль">
           </div>
-          <input type="hidden" name="tokenCsrf" value="<?php $tokenCsrf ?>">
+          <input type="hidden" name="token" value="<?php $token ?>">
           <div class="form__button">
             <button type="submit" class="btn">Войти</button><a class="btn btn-more btn-vk" href="<?php echo $url . "?" . urldecode(http_build_query($params)); ?>">Войти через VK</a>
           </div>
@@ -66,11 +54,7 @@ include 'config/singvk.php';
       <?php } else { ?>
 
         <div class="welcom">
-          <h2>Привет <?php if (isset($_SESSION['user'])) {
-                        echo $_SESSION['user']['login'];
-                      } else {
-                        echo $_SESSION['user_vk']['vk_name'];
-                      } ?>!</h2>
+          <h2>Привет <?php echo $_SESSION['user']['name']; ?>!</h2>
           <a class="btn" href="config/logout.php">Выход</a>
         </div>
       <?php } ?>

@@ -26,12 +26,16 @@ if (isset($_SESSION['user'])) {
       <h5>Зарегистрироваться</h5>
       <form class="form form-in" action="config/singup.php" method="POST">
         <div class="form__item">
-          <label for="login">Логин:</label>
-          <input type="text" name="login" id="login" placeholder="Введите логин">
+          <label for="login">Ваше имя<sup>*</sup>:</label>
+          <input type="text" name="name" id="name" placeholder="Введите ваше имя" required>
         </div>
         <div class="form__item">
-          <label for="password">Пароль:</label>
-          <input type="password" name="password" id="password" placeholder="Введите пароль">
+          <label for="login">Логин<sup>*</sup>:</label>
+          <input type="text" name="login" id="login" placeholder="Введите логин" required>
+        </div>
+        <div class="form__item">
+          <label for="password">Пароль<sup>*</sup></label>
+          <input type="password" name="password" id="password" placeholder="Введите пароль" required>
         </div>
         <button type="submit" name="submit" class="btn btn-more">Зарегистрироваться</button>
         <p class="form__text">У вас уже есть аккаунт? - <a href="index.php">Авторизуйтесь</a></p>

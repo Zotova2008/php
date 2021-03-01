@@ -21,6 +21,7 @@ $params = [
   // Если указать "offline", полученный access_token будет "вечным" (токен умрёт, если пользователь сменит свой пароль или удалит приложение).
   // Если не указать "offline", то полученный токен будет жить 12 часов.
   // 'scope' => 'photos,offline'
+
 ];
 
 if (isset($_GET['code'])) {
@@ -52,54 +53,37 @@ if (isset($_GET['code'])) {
   }
 
   if ($result) {
-    $vk_id = $userInfo['id'];
-    $vk_name = $userInfo['first_name'];
-    $vk_link = $userInfo['screen_name'];
+    $name = $userInfo['first_name'];
+    $login = $userInfo['id'];
+    $password = $userInfo['id'];
+    $vk_user = '1';
+    $role = 'vk';
 
-    $check = mysqli_query($connect, "SELECT * FROM users_vk WHERE vk_id = '$vk_id'");
+    $check = mysqli_query($connect, "SELECT * FROM users WHERE login = '$login'");
     $resCheck = mysqli_num_rows($check);
 
     if ($resCheck > 0) {
       $_SESSION['message'] = "Логин уже занесен в базу";
     } else {
-      mysqli_query($connect, "INSERT INTO users_vk (vk_id, vk_name, vk_link) VALUES ('$vk_id', '$vk_name', '$vk_link')");
+      $password = password_hash($password, PASSWORD_DEFAULT);
+      mysqli_query($connect, "INSERT INTO users (login, password, name, vk_user, role) VALUES ('$login', '$password', '$name', '$vk_user', '$role')");
 
-      $check = mysqli_query($connect, "SELECT * FROM users_vk WHERE vk_id = '$vk_id'");
+      $check = mysqli_query($connect, "SELECT * FROM users WHERE login = '$login'");
       $resCheck = mysqli_num_rows($check);
 
       if ($resCheck > 0) {
         // Получаем массив из выборки
-        $user_vk = mysqli_fetch_assoc($check);
-        $_SESSION['user_vk'] = [
-          "id" => $user_vk['id'],
-          "vk_id" => $user_vk['vk_id'],
-          "vk_name" => $user_vk['vk_name'],
+        $user = mysqli_fetch_assoc($check);
+        $_SESSION['user'] = [
+          "id" => $user['id'],
+          "login" => $user['login'],
+          "name" => $user['name'],
+          "role" => $user['role'],
         ];
       }
 
       $_SESSION['message'] = "Авторизация прошла успешно.";
+      header('Location: ../index.php');
     }
   }
 }
-
-if (isset($token)) {
-  echo 'var_dump($token)' . '<br>';
-  var_dump($token);
-  echo '<br>';
-}
-
-if (isset($vk_id)) {
-  echo 'Пользователь vk' . ': ' . $vk_id . ', ' . $vk_name . ', ' . $vk_link . '<br>';
-}
-
-echo 'var_dump($_SESSION)' . '<br>';
-var_dump($_SESSION);
-echo '<br>';
-
-echo 'var_dump($_GET)' . '<br>';
-var_dump($_GET);
-echo '<br>';
-
-echo 'var_dump($_POST)' . '<br>';
-var_dump($_POST);
-echo '<br>';
