@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'cog.php';
 require 'connect.php';
 
 $login = $_POST['login'];
@@ -11,6 +12,7 @@ $resCheck = mysqli_num_rows($check);
 
 if ($resCheck > 0) {
   $_SESSION['error'] = "Такой логин уже существует";
+  $log->warning("Такой логин уже существует");
   header('Location: ../reg.php');
 } else {
   if ($login && $password && $name) {
@@ -38,6 +40,7 @@ if ($resCheck > 0) {
   } else {
 
     $_SESSION['error'] = "Заполните все поля";
+    $log->error("Поля заполнены не все");
     header('Location: ../reg.php');
   }
 }

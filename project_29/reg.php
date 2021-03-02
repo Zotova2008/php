@@ -2,6 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
+include 'log.php';
+
 session_start();
 
 if (isset($_SESSION['user'])) {
@@ -12,7 +14,7 @@ if (isset($_SESSION['user'])) {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

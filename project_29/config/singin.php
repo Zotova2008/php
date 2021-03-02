@@ -4,6 +4,7 @@ ini_set('display_errors', 'on');
 
 session_start();
 require 'connect.php';
+include '../log.php';
 
 $login = $_POST['login'];
 $password = $_POST['password'];
@@ -21,16 +22,20 @@ if ($login && $password) {
         "id" => $user['id'],
         "login" => $user['login'],
         "name" => $user['name'],
+        "role" => $user['role'],
       ];
       $_SESSION['message'] = "Авторизация прошла успешно";
     } else {
       $_SESSION['error'] = "Пароль не верный";
+      $log->error("Пароль не верный");
     }
   } else {
     $_SESSION['error'] = "Такого пользователя не существует";
+    $log->error("Такого пользователя не существует");
   }
 } else {
   $_SESSION['error'] = "Заполните все поля";
+  $log->error("Заполните все поля");
 }
 
 header('Location: ../index.php');

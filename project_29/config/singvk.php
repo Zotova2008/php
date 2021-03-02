@@ -20,7 +20,7 @@ $params = [
   // Права доступа приложения https://vk.com/dev/permissions
   // Если указать "offline", полученный access_token будет "вечным" (токен умрёт, если пользователь сменит свой пароль или удалит приложение).
   // Если не указать "offline", то полученный токен будет жить 12 часов.
-  'scope' => 'offline',
+  // 'scope' => 'offline',
 
 ];
 
@@ -64,26 +64,25 @@ if (isset($_GET['code'])) {
 
     if ($resCheck > 0) {
       $_SESSION['message'] = "Логин уже занесен в базу";
+      $log->info("Логин уже занесен в базу");
+
+      header('Location: ../index.php');
     } else {
       $password = password_hash($password, PASSWORD_DEFAULT);
       mysqli_query($connect, "INSERT INTO users (login, password, name, vk_user, role) VALUES ('$login', '$password', '$name', '$vk_user', '$role')");
 
       $check = mysqli_query($connect, "SELECT * FROM users WHERE login = '$login'");
       $resCheck = mysqli_num_rows($check);
-
-      if ($resCheck > 0) {
-        // Получаем массив из выборки
-        $user = mysqli_fetch_assoc($check);
-        $_SESSION['user'] = [
-          "id" => $user['id'],
-          "login" => $user['login'],
-          "name" => $user['name'],
-          "role" => $user['role'],
-        ];
-      }
-
-      $_SESSION['message'] = "Авторизация прошла успешно.";
-      header('Location: ../index.php');
     }
+
+    // Получаем массив из выборки
+    $user = mysqli_fetch_assoc($check);
+    $_SESSION['user'] = [
+      "id" => $user['id'],
+      "login" => $user['login'],
+      "name" => $user['name'],
+      "role" => $user['role'],
+    ];
   }
+  $_SESSION['message'] = "Авторизация прошла успешно.";
 }
