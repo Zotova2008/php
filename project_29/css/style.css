@@ -19,7 +19,7 @@ body {
   text-align: center;
 }
 
-.form-box form {
+.form-box form: {
   max-width: 300px;
   margin: 0 auto;
 }
