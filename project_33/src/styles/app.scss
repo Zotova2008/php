@@ -1,0 +1,34 @@
+body {
+  display: grid;
+  width: 100%;
+  max-width: 768px;
+  min-height: 100vh;
+  margin: 0 auto;
+
+  background: #cccccc;
+
+  grid-template-rows: auto 1fr auto;
+}
+
+.header {
+  padding-top: 50px;
+}
+
+.main {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+h1 {
+  text-align: center;
+}
+
+@import "common/menu";
+
+@import "common/form.scss";
+
+@import "common/technologies";
+
+@import "common/slider";
+
+@import "common/footer";

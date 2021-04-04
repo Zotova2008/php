@@ -1,0 +1,33 @@
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin: 0 20px;
+  }
+
+  a {
+    display: inline-block;
+    padding: 10px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    background-color: #050569;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: blue;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
+}

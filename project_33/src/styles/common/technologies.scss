@@ -1,0 +1,23 @@
+.technologies {
+  padding: 0;
+
+  text-align: center;
+}
+
+.technologies__list {
+  display: grid;
+  align-items: center;
+
+  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+
+  li {
+    display: inline-block;
+
+    list-style: none;
+
+    img {
+      width: 100px;
+    }
+  }
+}

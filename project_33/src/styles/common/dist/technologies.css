@@ -1,0 +1,10 @@
+.technologies {
+  padding: 0;
+}
+.technologies li {
+  display: inline-block;
+  list-style: none;
+}
+.technologies li img {
+  width: 100px;
+}

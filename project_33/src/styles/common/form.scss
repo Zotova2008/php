@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+
+  & input {
+    margin-bottom: 30px;
+    padding: 10px;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #818181;
+  }
+
+  & label {
+    padding-bottom: 10px;
+  }
+
+  & button {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto;
+    padding: 10px;
+
+    color: #ffffff;
+
+    background-color: #050569;
+    border: none;
+    border-radius: 3px;
+  }
+}
