@@ -11,7 +11,7 @@
 # https://www.mediawiki.org/wiki/Manual:Configuration_settings
 
 # Protect against web entry
-if ( !defined( 'MEDIAWIKI' ) ) {
+if (!defined('MEDIAWIKI')) {
 	exit;
 }
 
@@ -36,7 +36,7 @@ $wgResourceBasePath = $wgScriptPath;
 
 ## The URL paths to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
-$wgLogos = [ '1x' => "$wgResourceBasePath/resources/assets/wiki.png" ];
+$wgLogos = ['1x' => "$wgResourceBasePath/resources/assets/wiki.png"];
 
 ## UPO means: this is also a user preference option
 
@@ -130,32 +130,44 @@ $wgDefaultSkin = "vector";
 
 # Enabled skins.
 # The following skins were automatically enabled:
-wfLoadSkin( 'MonoBook' );
-wfLoadSkin( 'Timeless' );
-wfLoadSkin( 'Vector' );
+wfLoadSkin('MonoBook');
+wfLoadSkin('Timeless');
+wfLoadSkin('Vector');
 
 
 # Enabled extensions. Most of the extensions are enabled by adding
 # wfLoadExtension( 'ExtensionName' );
 # to LocalSettings.php. Check specific extension documentation for more details.
 # The following extensions were automatically enabled:
-wfLoadExtension( 'CategoryTree' );
-wfLoadExtension( 'CiteThisPage' );
-wfLoadExtension( 'CodeEditor' );
-wfLoadExtension( 'ConfirmEdit' );
-wfLoadExtension( 'ImageMap' );
-wfLoadExtension( 'InputBox' );
-wfLoadExtension( 'Interwiki' );
-wfLoadExtension( 'Nuke' );
-wfLoadExtension( 'PageImages' );
-wfLoadExtension( 'ParserFunctions' );
-wfLoadExtension( 'PdfHandler' );
-wfLoadExtension( 'Renameuser' );
-wfLoadExtension( 'ReplaceText' );
-wfLoadExtension( 'SpamBlacklist' );
-wfLoadExtension( 'WikiEditor' );
+wfLoadExtension('CategoryTree');
+wfLoadExtension('CiteThisPage');
+wfLoadExtension('CodeEditor');
+wfLoadExtension('ConfirmEdit');
+wfLoadExtension('ImageMap');
+wfLoadExtension('InputBox');
+wfLoadExtension('Interwiki');
+wfLoadExtension('Nuke');
+wfLoadExtension('PageImages');
+wfLoadExtension('ParserFunctions');
+wfLoadExtension('PdfHandler');
+wfLoadExtension('Renameuser');
+wfLoadExtension('ReplaceText');
+wfLoadExtension('SpamBlacklist');
+wfLoadExtension('WikiEditor');
 
 
 # End of automatically generated settings.
 # Add more configuration options below.
 
+
+# Database settings
+$dbopts = parse_url(getenv('DATABASE_URL'));
+$dbopts["path"] = ltrim($dbopts["path"], "/");
+$wgDBtype = "postgres";
+$wgDBserver = $dbopts['host'];
+$wgDBname = $dbopts['path'];
+$wgDBuser = $dbopts['user'];
+$wgDBpassword = $dbopts['pass'];
+# Postgres specific settings
+$wgDBport = $dbopts['port'];
+$wgDBmwschema = "mediawiki";
