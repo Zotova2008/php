@@ -1,28 +1,25 @@
 // Получение данных в localStorage
-var myKey = localStorage.getItem('userData');
-if (myKey === null) {
+var jsonMyKey = localStorage.getItem('userData');
+
+if (jsonMyKey === null) {
   var inputName = prompt(`Добро пожаловать! Назовите, пожалуйста, ваше имя`);
-  var inputDate = new Date();
-
-  //JSON для записи
+  var inputDate = String(new Date().toLocaleString());
+  //   //JSON для записи
   const jsonString = `
-  {
-    "name": ${inputName},
-    "date": ${inputDate}
-  }`;
-
-  //Запись в localStorage
+    {
+      "name": "${inputName}",
+      "date": "${inputDate}"
+    }`;
   localStorage.setItem('userData', jsonString);
 } else {
+  var myKey = JSON.parse(jsonMyKey);
   alert(`Добрый день, ${myKey.name}! Давно не виделись. В последний раз вы были у нас ${myKey.date}`);
-
-  //JSON для перезаписи
+  var inputDate = String(new Date().toLocaleString());
   const jsonString = `
-  {
-    "name": ${myKey.name},
-    "date": ${new Date()}
-  }`;
+    {
+      "name": "${myKey.name}",
+      "date": "${inputDate}"
+    }`;
 
-  //Перезапись localStorage
   localStorage.setItem('userData', jsonString);
 }
