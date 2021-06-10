@@ -1,0 +1,108 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.section {
+  width: 100%;
+  max-width: 1440px;
+  padding: 20px 40px;
+}
+
+.flag {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flag__item {
+  padding: 20px;
+}
+
+.btn-task {
+  display: flex;
+  min-width: 100px;
+  padding: 10px 20px;
+
+  font-size: 20px;
+
+  background-color: aqua;
+  border: 1px solid aquamarine;
+  border-radius: 3px;
+}
+
+.btn-task:hover {
+  color: #ffffff;
+
+  background-color: blue;
+}
+
+.second-btn__text {
+  padding-right: 20px;
+}
+
+.task__fifth-container {
+  display: grid;
+  padding: 20px;
+
+  border: 4px solid #9299fd;
+
+  gap: 20px;
+  grid-template-columns: 1fr auto auto;
+}
+
+.task__fifth-container input {
+  padding: 5px 20px;
+
+  border: 4px solid #9299fd;
+}
+
+.task__fifth-container button {
+  padding: 10px 20px;
+
+  background-color: #9299fd;
+  border: none;
+  border-radius: 3px;
+}
+
+.task__fifth-container button:hover {
+  color: #ffffff;
+
+  background-color: #000cb9;
+}
+
+.task__fifth-list {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  min-height: 50px;
+  padding: 20px;
+
+  list-style: none;
+
+  border: 4px solid #9299fd;
+}
+
+.task__fifth-list li {
+  max-width: 700px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+
+  word-break: break-all;
+
+  border: 2px solid #6db900;
+  border-radius: 10px;
+}
+
+.task__fifth-list #request,
+.task__fifth-list #geodata {
+  margin-left: auto;
+}
+
+.task__fifth-list #response {
+  border: 2px solid #000cb9;
+}
