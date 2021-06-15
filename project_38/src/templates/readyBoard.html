@@ -1,0 +1,16 @@
+<div class="board__item board__item--ready">
+  <h2>Ready</h2>
+  <div id="ready-board" class="board__list"></div>
+  <div class="tasks-box">
+    <form class="form" id="taskForm">
+
+      <div class="form__task form__task--open collapse" id="collapseReady">
+        <button class="form__task-close" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReady" aria-expanded="false" aria-controls="collapseReady"></button>
+        <input type="text" placeholder="User name" class="form__task-input" name="user-name" required>
+        <input type="text" placeholder="Task title" class="form__task-input" name="task-title" required>
+        <textarea class="form__task-input form__task-content" name="task-content" placeholder="Task content"></textarea>
+      </div>
+      <button %addDisabled% id="addCardReady" class="btn btn-dark shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReady" aria-expanded="false" aria-controls="collapseReady">+Add card</button>
+    </form>
+  </div>
+</div>
