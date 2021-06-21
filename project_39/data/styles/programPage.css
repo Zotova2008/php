@@ -1,0 +1,25 @@
+html,
+body {
+  height: 90%;
+}
+
+#buttonsRow {
+  margin-top: 10px;
+}
+
+#programImageRow {
+  margin-bottom: 15px;
+}
+
+.jumbo {
+  width: 1000px;
+}
+
+.cancel {
+  width: 120px;
+  margin-right: 5px;
+}
+
+.save {
+  width: 120px;
+}
